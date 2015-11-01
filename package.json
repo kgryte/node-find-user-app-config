@@ -1,6 +1,6 @@
 {
   "name": "find-user-app-config",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Loads an application's user configuration.",
   "author": {
     "name": "Athan Reines",
