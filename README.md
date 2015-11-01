@@ -45,7 +45,7 @@ var config = find({
 });
 ```
 
-By default, this module assumes that a configuration file name matches the application name. To specify a different configuration file basename, set the `basename` option.
+By default, this module assumes that a configuration file name matches the [application name](https://github.com/kgryte/resolve-app-pkginfo). To specify a different configuration file basename, set the `basename` option.
 
 ``` javascript
 var config = find({
