@@ -32,7 +32,7 @@ The `function` accepts the following `options`:
 *	__basename__: basename of a file within the user configuration directory which contains *user* application settings. The default value is the [application name](https://github.com/kgryte/resolve-app-pkginfo).
 *	__fmt__: user configuration file format. The default value is either determined from a `basename` filename [extension](https://github.com/kgryte/utils-extname) or `ini`.
 
-User configuration directory locations vary from platform to platform. By default, this module only supports [standard directory locations](https://github.com/kgryte/utils-configdir). To accommodate non-standard user configuration directories, e.g., `$HOME/.config/<app_name>`, the module supports a `dir` option. 
+User configuration directory locations vary from platform to platform. By default, this module only supports [standard directory locations](https://github.com/kgryte/utils-configdir). To accommodate non-standard user configuration directories, e.g., `$HOME/.config/<app_name>` on Mac OS X, the module supports a `dir` option. 
 
 ``` javascript
 var homedir = require( 'utils-homedir' ),
