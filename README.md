@@ -29,7 +29,7 @@ var config = find();
 The `function` accepts the following `options`:
 
 *	__dir__: user configuration directory. The [default value](https://github.com/kgryte/utils-configdir) is determined according to the host OS.
-*	__basename__: basename of a file within the user configuration directory which contains *user* application settings. The default value is the application [name](https://github.com/kgryte/resolve-app-pkginfo).
+*	__basename__: basename of a file within the user configuration directory which contains *user* application settings. The default value is the [application name](https://github.com/kgryte/resolve-app-pkginfo).
 *	__fmt__: user configuration file format. The default value is either determined from a `basename` filename [extension](https://github.com/kgryte/utils-extname) or `ini`.
 
 User configuration directory locations vary from platform to platform. By default, this module only supports [standard directory locations](https://github.com/kgryte/utils-configdir). To accommodate non-standard user configuration directories, e.g., `$HOME/.config/<app_name>`, the module supports a `dir` option. 
@@ -38,7 +38,7 @@ User configuration directory locations vary from platform to platform. By defaul
 var homedir = require( 'utils-homedir' ),
 	path = require( 'path' );
 
-var dir = path.join( homedir(), './config', 'my-app-name' );
+var dir = path.join( homedir(), '.config', 'my-app-name' );
 
 var config = find({
 	'dir': dir
@@ -103,9 +103,18 @@ Once a parser is set, `find` invocations will load and parse provided files acco
 ## Notes
 
 *	If a file extension is omitted when specifying a file basename, this module will search for the first file having the basename and a supported extension. For supported extensions, see [app-etc-load](https://github.com/kgryte/node-app-etc-load).
-*	If a file basename does __not__ begin with a `.`, this module will search for both hidden and non-hidden files. This also applies for inferred basenames; e.g., __<pkg_name>__. If `<pkg_name>` is `super-app`, this module will search for and load either an `.super-app.<ext>` or a `super-app.<ext>` file. 
+*	If a file basename does __not__ begin with a `.`, this module will search for both hidden and non-hidden files. This also applies for inferred basenames; e.g., __<pkg_name>__. If `<pkg_name>` is `super-app`, this module will search for and load either an `.super-app.<ext>` or a `super-app.<ext>` file.
+*	Depending on provided options and the existence of a user configuration [directory](https://github.com/kgryte/utils-configdir), various strategies are used to resolve user application configuration files; e.g., see [source](https://github.com/kgryte/node-find-user-app-config/blob/master/lib/userdirfile.js). The basic strategy is as follows:
 
+	-	Search for a configuration dot or `rc` file in a user configuration [directory](https://github.com/kgryte/utils-configdir).
+	-	Search for a either a hidden or non-hidden configuration file having a supported [extension](https://github.com/kgryte/node-app-etc-load) in a user configuration [directory](https://github.com/kgryte/utils-configdir).
+	-	Search for a configuration dot or `rc` file by walking up from the [current working directory](https://github.com/kgryte/utils-cwd).
 
+	If you encounter unexpected results, set the `DEBUG` environment variable to see the steps taken to resolve a configuration file.
+
+	``` bash
+	$ DEBUG=find-user-app-config:* node <path/to/your/app>
+	```
 
 
 ---
