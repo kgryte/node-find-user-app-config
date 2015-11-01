@@ -103,7 +103,7 @@ Once a parser is set, `find` invocations will load and parse provided files acco
 ## Notes
 
 *	If a file extension is omitted when specifying a file basename, this module will search for the first file having the basename and a supported extension. For supported extensions, see [app-etc-load](https://github.com/kgryte/node-app-etc-load).
-*	If a file basename does __not__ begin with a `.`, this module will search for both hidden and non-hidden files. This also applies for inferred basenames; e.g., __<pkg_name>__. If `<pkg_name>` is `super-app`, this module will search for and load either an `.super-app.<ext>` or a `super-app.<ext>` file.
+*	If a file basename does __not__ begin with a `.`, this module will search for both hidden and non-hidden files. This also applies for inferred basenames; e.g., __<pkg_name>__. If `<pkg_name>` is `super-app`, this module will search for and load either a `.super-app.<ext>` or a `super-app.<ext>` file.
 *	Depending on provided options and the existence of a user configuration [directory](https://github.com/kgryte/utils-configdir), various strategies are used to resolve user application configuration files; e.g., see [source](https://github.com/kgryte/node-find-user-app-config/blob/master/lib/userdirfile.js). The basic strategy is as follows:
 
 	-	Search for a configuration dot or `rc` file in a user configuration [directory](https://github.com/kgryte/utils-configdir).
