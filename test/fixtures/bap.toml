@@ -1,0 +1,13 @@
+# Configuration file specifying default settings...
+
+# Server config:
+[server]
+port = 8080
+address = "127.0.0.1"
+ssl = true
+key = "./path/to/key"
+cert = "./path/to/cert"
+
+# Logger config:
+[logger]
+level = "debug"
